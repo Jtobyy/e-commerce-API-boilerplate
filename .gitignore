@@ -4,3 +4,4 @@ migrations
 user_*
 Fashion_*
 Cyberstick*
+db.sqlite3
