@@ -22,5 +22,6 @@ class CustomUserSerializer(serializers.ModelSerializer):
             'country',
             'profile_picture',
         ]
+
     def get_id(self, obj):
         return obj.id

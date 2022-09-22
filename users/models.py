@@ -7,7 +7,7 @@ from .validators import phone_regex
 
 # Path to store user images
 def user_directory_path(instance, filename): 
-    return 'user_{0}/{1}'.format(instance.pk, filename) 
+    return 'user_{0}/{1}'.format(instance.id, filename) 
 # Custom User model
 class CustomUser(AbstractUser):
     email = models.EmailField(_("email address"), blank=False)    

@@ -25,9 +25,13 @@ class Order(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     amount = models.IntegerField('amount bought', default=1)
-    price_paid = models.DecimalField('price paid (ANG)', default=25000.00, max_digits=11, decimal_places=2)
+    unit_price = models.DecimalField('unit price (ANG)', default=25000.00, max_digits=11, decimal_places=2)
     date = models.DateTimeField('order date', auto_now_add=True)
     status = models.CharField('order status', choices=order_statuses, max_length=1, default='M')
+
+    @property
+    def total_price(self):
+        return self.amount * self.unit_price
 
 # Table to keep track of payments
 class Payment(models.Model):

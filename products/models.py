@@ -9,13 +9,14 @@ class Tag(models.Model):
     name = models.CharField('tag name', max_length=50)
     image = models.ImageField(upload_to=tag_image_path, null=True)
 
+    def __str__(self):
+        return self.name + ' (' + str(self.id) + ') '
 
 # Path to store product images
 def product_image_path(instance, filename): 
     return '{0}_images/{1}'.format(instance.name, filename)
 # A sample of what a procuct table may be
 class Product(models.Model):    
-    id = models.IntegerField('product id', primary_key=True, unique=True)
     name = models.CharField('product name', max_length=100, unique=True)
     description = models.TextField('description', null=True)
     tags = models.ManyToManyField(Tag, verbose_name='tags', blank=True)

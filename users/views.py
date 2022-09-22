@@ -10,6 +10,26 @@ from api.permissions import IsStaffEditorPermission
 
 # User Registration 
 class UserListCreateAPIView(generics.ListCreateAPIView):
+    """
+    This endpoint returns a list of all **user** accounts in the system.
+    and allows   new users to be added.
+
+    Only staff users can view all accounts. A user that doesn't have staff permission will only be able to view
+    the account partaining to them.
+
+    id:     The user's unique identifier
+    first_name: The user's first name
+    last_name: The user's last name
+    username:  The user's username
+    email: The user's email address
+    password: The user's hashed password
+    phone_number: The user's phone number
+    address: The user's address
+    city: The city the user live's in 
+    state: The state the user live's in 
+    country: The country the user live's in
+    profile_picture: The user's profile picture
+    """
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
 
@@ -33,6 +53,25 @@ user_list_create_view = UserListCreateAPIView.as_view()
 
 
 class UserDetailUpdateAPIView(generics.RetrieveUpdateAPIView):
+    """
+    This endpoint returns the detail of a particular account and also allows accounts to be edited.
+
+    Only staff users can edit any accounts. A user that doesn't have staff permission will only be able to view
+    and edit the account partaining to them.
+
+    id:     The user's unique identifier
+    first_name: The user's first name
+    last_name: The user's last name
+    username:  The user's username
+    email: The user's email address
+    password: The user's hashed password
+    phone_number: The user's phone number
+    address: The user's address
+    city: The city the user live's in 
+    state: The state the user live's in 
+    country: The country the user live's in , 
+    profile_picture: The user's profile picture    
+    """
     serializer_class = CustomUserSerializer
     lookup_field = 'pk' # Could be email addresses instead or any other fields
 

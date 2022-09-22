@@ -4,8 +4,6 @@ from .models import Product, Tag
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    id = serializers.SerializerMethodField(read_only=True)  
-
     class Meta:
         model = Product
         fields = [
@@ -21,8 +19,6 @@ class ProductSerializer(serializers.ModelSerializer):
             'date',
         ]
 
-        def get_id(self, obj):
-            return obj.id
 
 class TagSerializer(serializers.ModelSerializer):
     id = serializers.SerializerMethodField(read_only=True)
