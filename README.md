@@ -1,4 +1,4 @@
-# Scalable API Application with Django
+# Layo's backend API Application with Django
 
 ## Business Requirements
 At the very least, we want to keep record of our clients that visited our sites to purchase a particular product. In respect to this we want a table too that stores client login details, orders history and payment history.
@@ -16,7 +16,19 @@ At the very least, we want to keep record of our clients that visited our sites 
 - Then create a virtual environment `python -m venv .env`
 - Activate it. If on windows `.env\Scripts\activate` elif linux `.env/bin/activate`
 - Install packages from the requirements file `pip install -r requirements.txt`
-- Then make migrations with `python manage.py makemigrations && python manage.py migrate`
+- 
+- Then make migrations with `python manage.py makemigrations [--app] && python manage.py migrate [--app] ` 
+    (Do this for each app: users, api, orders, products. 
+    - Ensure to makemigrations and migrate the users app before any other.
+    - Ensure to makemigrations and migrate the products app before orders.
+    )
+    Basically, do the following:
+    - python manage.py makemigrations users && python manage.py migrate users
+    - python manage.py makemigrations api && python manage.py migrate api
+    - python manage.py makemigrations products && python manage.py migrate products
+    - python manage.py makemigrations orders && python manage.py migrate orders
+    - python manage.py makemigrations && python manage.py migrate
+    
 - Finally run the local server `python manage.py runserver :port`
 
 - The root api will be at localhost:`port`/api/
